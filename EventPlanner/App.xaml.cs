@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
+// This an event planner
 namespace EventPlanner
 {
     /// <summary>
