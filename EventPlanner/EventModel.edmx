@@ -11,7 +11,18 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="es_J12004461Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="es_J12004461Entities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="es_J12004461Entities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Events" EntityType="es_J12004461Model.Event" />
+        </EntityContainer>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Note" Type="String" Nullable="false" />
+          <Property Name="EventTitle" Type="String" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
