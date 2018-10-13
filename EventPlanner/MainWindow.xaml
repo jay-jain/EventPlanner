@@ -5,14 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventPlanner"
         mc:Ignorable="d"
-        Title="Event Planner" Height="450" Width="739.496">
-    <Grid>
-        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="83" Margin="10,10,0,0" Content="Add Event">
+        Title="Event Planner" Height="663.025" Width="760.519">
+    <Grid HorizontalAlignment="Left" Width="751">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="589*"/>
+            <ColumnDefinition Width="163*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="10,10,0,0" Content="Add Event" Height="33">
             <!--Image Source="plus.png" Height="32" Width="31" RenderTransformOrigin="0.692,0.416" /-->
         </Button>
-        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="83" Margin="619,10,0,0" Content="Print">
+        <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="43.5,10,0,0" Content="Print" Height="33" Grid.Column="1">
             <!--Image Source="print.png" Height="36" Width="35" RenderTransformOrigin="0.589,1.278" /-->
         </Button>
+        <Separator HorizontalAlignment="Right" Height="101" Margin="-293,0,0,0" VerticalAlignment="Top" Width="1044" FontFamily="Corbel" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="Event Planner" VerticalAlignment="Top" Width="208" Margin="256,10,0,0" TextAlignment="Center" FontSize="24" TextChanged="textBox_TextChanged" BorderThickness="0"/>
 
     </Grid>
 </Window>
