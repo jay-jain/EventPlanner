@@ -23,6 +23,42 @@ namespace EventPlanner
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+
+        private void textBox2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBox1_Copy1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBox1_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
