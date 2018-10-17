@@ -75,6 +75,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Event.cs">
+      <DependentUpon>EventModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EventModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

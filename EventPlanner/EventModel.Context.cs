@@ -25,5 +25,6 @@ namespace EventPlanner
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Event> Events { get; set; }
     }
 }
