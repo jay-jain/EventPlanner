@@ -27,10 +27,10 @@ namespace EventPlanner
             InitializeComponent();
             this.t = t;
             eventName.Text = t.getTitle();
-            updateRelativeDueTime(DateTime.Now);
+            UpdateRelativeDueTime(DateTime.Now);
         }
 
-        internal void updateRelativeDueTime(DateTime now)
+        internal void UpdateRelativeDueTime(DateTime now)
         {
             TimeSpan timespan = t.getTime() - now;
             dueTime.Text = "Due: " + timespan.Days.ToString() + "d, " + timespan.Hours.ToString() + "h, " + timespan.Minutes.ToString() + "m";

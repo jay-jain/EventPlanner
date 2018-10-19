@@ -36,12 +36,12 @@ namespace EventPlanner
             if (t.getTime().Hour == 0)
             {
                 hourEntry.Text = "12";
-                ampmSelecter.SelectedIndex = 0; //sets to AM
+                ampmSelector.SelectedIndex = 0; //sets to AM
             }
             else if (t.getTime().Hour > 12)
             {
                 hourEntry.Text = (t.getTime().Hour - 12).ToString();
-                ampmSelecter.SelectedIndex = 1; //sets to PM
+                ampmSelector.SelectedIndex = 1; //sets to PM
             }
             else
             {
@@ -90,7 +90,7 @@ namespace EventPlanner
                 if (hours == 12) hours = 0;
 
                 //same as above, we add 12 hours if the event is in the evening to convert to military time
-                if (ampmSelecter.SelectedValue.ToString() == "PM") hours += 12;
+                if (ampmSelector.SelectedValue.ToString() == "PM") hours += 12;
 
                 //this is the timespan that will be added to the date
                 time = new TimeSpan(hours, minutes, 0);

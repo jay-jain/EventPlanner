@@ -16,22 +16,22 @@
             <ColumnDefinition Width="163*"/>
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="AddTask" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="10,10,0,0" Content="Add Event" Height="33" FontSize="16" />
-        <Button x:Name="PrintReport" HorizontalAlignment="Left" VerticalAlignment="Top" Width="88" Margin="44,10,0,0" Content="Print" Height="33" Grid.Column="1" FontSize="16" />
+        <Button x:Name="AddTaskButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="10,10,0,0" Content="Add Event" Height="33" FontSize="16" Click="AddTaskButton_Click" />
+        <Button x:Name="PrintReport" HorizontalAlignment="Left" VerticalAlignment="Top" Width="88" Margin="44,10,0,0" Content="Print" Height="33" Grid.Column="1" FontSize="16" Click="PrintReport_Click" />
         <!--Image Source="print.png" Height="36" Width="35" RenderTransformOrigin="0.589,1.278" /-->
         <Separator HorizontalAlignment="Right" IsEnabled="False" Height="101" Margin="0" VerticalAlignment="Top" Width="751" FontFamily="Corbel" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="Title" HorizontalAlignment="Left" IsEnabled="False" Height="33" TextWrapping="Wrap" Text="Event Planner" VerticalAlignment="Top" Width="208" Margin="256,10,0,0" TextAlignment="Center" FontSize="20" TextChanged="textBox_TextChanged" BorderThickness="0"/>
-        <TextBox x:Name="DayButton" HorizontalAlignment="Left" IsEnabled="False" Height="36" TextWrapping="Wrap" Text="Day" VerticalAlignment="Top" Width="41" Margin="586,65,0,0" FontSize="18" TextAlignment="Center" ForceCursor="True" Focusable="False" Background="#FFDCD7D7" Grid.ColumnSpan="2" TextChanged="textBox1_TextChanged"/>
-        <TextBox x:Name="AllButton" HorizontalAlignment="Left" IsEnabled="False" Height="36" TextWrapping="Wrap" Text="All" VerticalAlignment="Top" Width="46" Margin="107,65,0,0" FontSize="18" TextAlignment="Center" Grid.Column="1" TextChanged="textBox1_Copy_TextChanged"/>
-        <TextBox x:Name="WeekButton" HorizontalAlignment="Left" IsEnabled="False" Height="36" TextWrapping="Wrap" Text="Week" VerticalAlignment="Top" Width="68" Margin="39,65,0,0" FontSize="18" TextAlignment="Center" Grid.Column="1" TextChanged="textBox1_Copy1_TextChanged"/>
+        <TextBox x:Name="Title" HorizontalAlignment="Left" IsEnabled="False" Height="33" TextWrapping="Wrap" Text="Event Planner" VerticalAlignment="Top" Width="208" Margin="256,10,0,0" TextAlignment="Center" FontSize="20"  BorderThickness="0"/>
+        <TextBox x:Name="DayButton" HorizontalAlignment="Left" IsEnabled="False" Height="36" TextWrapping="Wrap" Text="Day" VerticalAlignment="Top" Width="41" Margin="586,65,0,0" FontSize="18" TextAlignment="Center" ForceCursor="True" Focusable="False" Background="#FFDCD7D7" Grid.ColumnSpan="2" />
+        <TextBox x:Name="AllButton" HorizontalAlignment="Left" IsEnabled="False" Height="36" TextWrapping="Wrap" Text="All" VerticalAlignment="Top" Width="46" Margin="107,65,0,0" FontSize="18" TextAlignment="Center" Grid.Column="1" />
+        <TextBox x:Name="WeekButton" HorizontalAlignment="Left" IsEnabled="False" Height="36" TextWrapping="Wrap" Text="Week" VerticalAlignment="Top" Width="68" Margin="39,65,0,0" FontSize="18" TextAlignment="Center" Grid.Column="1" />
         <Label x:Name="CurrentTimeLabel" Content="Current Time:" HorizontalAlignment="Left" Margin="24,60,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="CurrentTime" HorizontalAlignment="Left" Margin="110,65,0,0" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.899,0.611"/>
         <ScrollViewer HorizontalAlignment="Left" Height="111" Margin="58,149,0,0" VerticalAlignment="Top" Width="618" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <StackPanel x:Name="UpcomingEventsView"/>
+            <StackPanel x:Name="UpcomingTasksDisplay"/>
         </ScrollViewer>
         <Label x:Name="DueSoonLabel" Content="Due Soon:" HorizontalAlignment="Left" Margin="58,118,0,0" VerticalAlignment="Top"/>
         <ScrollViewer HorizontalAlignment="Left" Height="161" Margin="70,119,0,0" VerticalAlignment="Top" Width="637" VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="2">
-            <StackPanel x:Name="AllEventView"/>
+            <StackPanel x:Name="AllTasksDisplay"/>
         </ScrollViewer>
         <Label x:Name="TaskLabel" Content="Dates and Events:" HorizontalAlignment="Left" Margin="70,88,0,0" VerticalAlignment="Top" Grid.Row="1"/>
     </Grid>
