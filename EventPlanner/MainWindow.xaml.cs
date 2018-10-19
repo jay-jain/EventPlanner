@@ -101,7 +101,7 @@ namespace EventPlanner
 
         }
 
-        private void writeEvents()
+        private void WriteEvents()
         {
             try
             {
@@ -115,7 +115,7 @@ namespace EventPlanner
             }
             catch (IOException ex)
             {
-                MessageBox.Show("Could not create event file, nothing will be saved this session.  Error: " + ex.Message);
+                MessageBox.Show("Could not create task file, nothing will be saved this session.  Error: " + ex.Message);
             }
         }
 
@@ -242,7 +242,7 @@ namespace EventPlanner
 
             ClearPastEvents();
             eventList.Sort();
-            writeEvents();
+            WriteEvents();
 
             generateDates(daysInFuture, DateTime.Now);
             populateIncoming(DateTime.Now);
@@ -284,15 +284,15 @@ namespace EventPlanner
             //}
 
             String printMessage = "";
-            printMessage += "Event Report as of " + DateTime.Now.ToLongDateString();
+            printMessage += "Task Report on " + DateTime.Now.ToLongDateString();
             printMessage += "\r\n";
             foreach (Task t in eventList)
             {
                 //string temp = de.getName() + "<<@>>" + de.getTime() + "<<@>>" + de.getNotes();
                 //sw.WriteLine(temp);
-                printMessage += "Event: " + t.getTitle();
+                printMessage += "Task: " + t.getTitle();
                 printMessage += "\r\n";
-                printMessage += "Occurs: " + t.getTime().ToLongDateString() + " " + t.getTime().ToLongTimeString();
+                printMessage += "Time: " + t.getTime().ToLongDateString() + " " + t.getTime().ToLongTimeString();
                 printMessage += "\r\n";
                 printMessage += "Notes: " + t.getNotes();
                 printMessage += "\r\n";
@@ -306,7 +306,7 @@ namespace EventPlanner
             PrintDialog dialog = new PrintDialog();
 
             dialog.ShowDialog();
-            dialog.PrintDocument(idpSource.DocumentPaginator, "Event Report");
+            dialog.PrintDocument(idpSource.DocumentPaginator, "Task Report");
 
             //Console.Out.WriteLine("Print Pressed");
         }
