@@ -26,7 +26,7 @@ namespace EventPlanner
         public bool editToggle;
         private Timer taskTimer; 
         private List<DateDisplay> dateDisplayList;
-        private List<Task> eventList;
+        private List<Task> taskList;
         private List<TaskDisplay> taskDisplayList;
         private int daysInFuture;
         private string ioFile;
@@ -34,10 +34,10 @@ namespace EventPlanner
 
         public MainWindow()
         {
-            ioFile = "events.txt";
+            ioFile = "Tasks.txt";
             daysInFuture = 30;
             dateDisplayList = new List<DateDisplay>();
-            eventList = new List<Task>();
+            taskList = new List<Task>();
             taskDisplayList = new List<TaskDisplay>();
             editToggle = false;
 
@@ -63,31 +63,31 @@ namespace EventPlanner
             //need to test for ioFile existing here, create it if it doesn't.
             try
             {
-                string[] stringEvents = File.ReadAllLines(ioFile);
+                string[] stringTasks = File.ReadAllLines(ioFile);
 
-                foreach (string line in stringEvents)
+                foreach (string line in stringTasks)
                 {
                     string[] tempInfo = Regex.Split(line, "<<@>>");
                     try
                     {
-                        Task tempEvent = new Task(tempInfo[0], DateTime.Parse(tempInfo[1]), tempInfo[2]);
-                        if (tempEvent.getTime() > DateTime.Now)
+                        Task tempTask = new Task(tempInfo[0], DateTime.Parse(tempInfo[1]), tempInfo[2]);
+                        if (tempTask.getTime() > DateTime.Now)
                         {
-                            eventList.Add(tempEvent);
+                            taskList.Add(tempTask);
                         }
                     }
                     catch (System.FormatException)
                     {
-                        MessageBox.Show("events.txt Data file has been corrupted.  Please erase or fix file and restart program");
+                        MessageBox.Show("The Tasks.txt file has been corrupted. Please erase or fix the file and restart the program");
                         Close();
                     }
                     catch (System.IndexOutOfRangeException)
                     {
-                        MessageBox.Show("events.txt Data file has been corrupted.  Please erase or fix file and restart program");
+                        MessageBox.Show("The Tasks.txt file has been corrupted. Please erase or fix the file and restart the program");
                         Close();
                     }
                 }
-                eventList.Sort();
+                taskList.Sort();
             }
             catch (FileNotFoundException)
             {
@@ -106,7 +106,7 @@ namespace EventPlanner
             try
             {
                 StreamWriter sw = new StreamWriter(ioFile);
-                foreach (Task t in eventList)
+                foreach (Task t in taskList)
                 {
                     string temp = t.getTitle() + "<<@>>" + t.getTime() + "<<@>>" + t.getNotes();
                     sw.WriteLine(temp);
@@ -128,7 +128,7 @@ namespace EventPlanner
                 dateDisplayList.Add(tempDate);
                 AllTasksDisplay.Children.Add(tempDate);
 
-                foreach (Task t in eventList)
+                foreach (Task t in taskList)
                 {
                     if (t.getTime().ToShortDateString() == now.ToShortDateString())
                     {
@@ -144,7 +144,7 @@ namespace EventPlanner
                         };
                         tempTaskDisplay.deleteButton.Click += (object sender, RoutedEventArgs e) =>
                         {
-                            eventList.Remove(t);
+                            taskList.Remove(t);
                             updateView();
                         };
                         tempDate.itemPanel.Children.Add(tempTaskDisplay);
@@ -155,7 +155,7 @@ namespace EventPlanner
                 now = now.AddDays(1);
             }
             Button moreDaysButton = new Button();
-            moreDaysButton.Content = "More days...";
+            moreDaysButton.Content = "Show More Days";
             moreDaysButton.Click += MoreDaysButton_Click;
             AllTasksDisplay.Children.Add(moreDaysButton);
 
@@ -169,8 +169,8 @@ namespace EventPlanner
 
         private void populateIncoming(DateTime now)
         {
-            if (eventList.Count() > 0) UpcomingTasksDisplay.Children.Add(new UpcomingDisplay(eventList[0]));
-            if (eventList.Count() > 1) UpcomingTasksDisplay.Children.Add(new UpcomingDisplay(eventList[1]));
+            if (taskList.Count() > 0) UpcomingTasksDisplay.Children.Add(new UpcomingDisplay(taskList[0]));
+            if (taskList.Count() > 1) UpcomingTasksDisplay.Children.Add(new UpcomingDisplay(taskList[1]));
 
         }
 
@@ -217,18 +217,18 @@ namespace EventPlanner
             }
         }
 
-        public void addEventToList(Task t)
+        public void addTaskToList(Task t)
         {
             if (t.getTime() > DateTime.Now)
             {
-                eventList.Add(t);
-                //eventList.Sort();
+                taskList.Add(t);
+                //taskList.Sort();
                 //writeEvents();
                 updateView();
             }
             else
             {
-                MessageBox.Show("Cannot add events before current date-time");
+                MessageBox.Show("Cannot add tasks before current date-time");
             }
         }
 
@@ -241,7 +241,7 @@ namespace EventPlanner
             UpcomingTasksDisplay.Children.Clear();
 
             ClearPastEvents();
-            eventList.Sort();
+            taskList.Sort();
             WriteEvents();
 
             generateDates(daysInFuture, DateTime.Now);
@@ -252,11 +252,11 @@ namespace EventPlanner
 
         private void ClearPastEvents()
         {
-            for (int i = eventList.Count - 1; i >= 0; i--)
+            for (int i = taskList.Count - 1; i >= 0; i--)
             {
-                if (eventList[i].getTime() < DateTime.Now)
+                if (taskList[i].getTime() < DateTime.Now)
                 {
-                    eventList.RemoveAt(i);
+                    taskList.RemoveAt(i);
                 }
             }
         }
@@ -267,7 +267,7 @@ namespace EventPlanner
             //    StreamWriter sw = new StreamWriter("EventReport.txt", true);
             //    sw.WriteLine("Event Report as of " + DateTime.Now.ToLongDateString());
             //    sw.WriteLine("");
-            //    foreach (DEvent de in eventList)
+            //    foreach (DEvent de in taskList)
             //    {
             //        //string temp = de.getName() + "<<@>>" + de.getTime() + "<<@>>" + de.getNotes();
             //        //sw.WriteLine(temp);
@@ -286,7 +286,7 @@ namespace EventPlanner
             String printMessage = "";
             printMessage += "Task Report on " + DateTime.Now.ToLongDateString();
             printMessage += "\r\n";
-            foreach (Task t in eventList)
+            foreach (Task t in taskList)
             {
                 //string temp = de.getName() + "<<@>>" + de.getTime() + "<<@>>" + de.getNotes();
                 //sw.WriteLine(temp);
@@ -308,12 +308,7 @@ namespace EventPlanner
             dialog.ShowDialog();
             dialog.PrintDocument(idpSource.DocumentPaginator, "Task Report");
 
-            //Console.Out.WriteLine("Print Pressed");
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
