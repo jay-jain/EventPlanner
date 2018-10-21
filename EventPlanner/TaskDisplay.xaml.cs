@@ -32,10 +32,10 @@ namespace EventPlanner
             updateElements();
         }
 
-        public void updateElements()
+        public void updateElements() // Update all task properties
         {
-            eventName.Text = t.getTitle();
-            eventNotes.Text = t.getNotes();
+            taskName.Text = t.getTitle();
+            taskNotes.Text = t.getNotes();
             dateText.Text = t.getTime().ToShortDateString();
             timeText.Text = t.getTime().ToShortTimeString();
             updateRelativeDueTime(DateTime.Now);
@@ -43,7 +43,7 @@ namespace EventPlanner
 
         public void updateRelativeDueTime(DateTime now)
         {
-            timespan = t.getTime() - now;
+            timespan = t.getTime() - now; // Calculate timespan between current time and when task is due
             relativeDueText.Text = "Due in: " + timespan.Days.ToString() + " Days, " + timespan.Hours.ToString() + " Hours and " + timespan.Minutes.ToString() + " minutes";
         }
 

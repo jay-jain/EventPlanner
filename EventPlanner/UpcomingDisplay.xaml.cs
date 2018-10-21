@@ -22,17 +22,17 @@ namespace EventPlanner
     {
         Task t;
 
-        public UpcomingDisplay(Task t)
+        public UpcomingDisplay(Task t) // Constructor that takes Task object; sets task name and updates relative due date
         {
             InitializeComponent();
             this.t = t;
-            eventName.Text = t.getTitle();
+            taskName.Text = t.getTitle();
             UpdateRelativeDueTime(DateTime.Now);
         }
 
         internal void UpdateRelativeDueTime(DateTime now)
         {
-            TimeSpan timespan = t.getTime() - now;
+            TimeSpan timespan = t.getTime() - now; // Calculate time till task is due
             dueTime.Text = "Due: " + timespan.Days.ToString() + "d, " + timespan.Hours.ToString() + "h, " + timespan.Minutes.ToString() + "m";
         }
     }

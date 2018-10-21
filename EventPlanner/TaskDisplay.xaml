@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         d:DesignWidth="250" Margin="0,0,0,3">
     <StackPanel Background="#FF9DFF9D" Width="250" MinWidth="250" MaxWidth="250" VerticalAlignment="Top" HorizontalAlignment="Left">
-        <TextBlock x:Name="eventName" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Task Name" VerticalAlignment="Top"/>
-        <TextBlock x:Name="eventNotes" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Task Notes" VerticalAlignment="Top"/>
+        <TextBlock x:Name="taskName" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Task Name" VerticalAlignment="Top"/>
+        <TextBlock x:Name="taskNotes" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Task Notes" VerticalAlignment="Top"/>
         <TextBlock x:Name="dateText" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top"/>
         <TextBlock x:Name="timeText" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top"/>
         <TextBlock x:Name="relativeDueText" TextWrapping="Wrap" Text="Relative Due Time" HorizontalAlignment="Center"/>

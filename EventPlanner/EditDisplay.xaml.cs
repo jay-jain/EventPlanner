@@ -21,34 +21,34 @@ namespace EventPlanner
     {
         MainWindow main;
         Task t;
-        public EditDisplay(MainWindow main)
+        public EditDisplay(MainWindow main) // Default constructor
         {
             InitializeComponent();
             this.main = main;
             t = null;
         }
-        public EditDisplay(MainWindow main, Task t)
+        public EditDisplay(MainWindow main, Task t) // Constructor that takes MainWindow and Task objects
         {
             InitializeComponent();
             this.main = main;
             this.t = t;
 
-            if (t.getTime().Hour == 0)
+            if (t.getTime().Hour == 0) // Handles AM time when hour is 0
             {
                 hourEntry.Text = "12";
-                ampmSelector.SelectedIndex = 0; //sets to AM
+                ampmSelector.SelectedIndex = 0; //Sets to AM
             }
-            else if (t.getTime().Hour > 12)
+            else if (t.getTime().Hour > 12) // Handles PM times
             {
                 hourEntry.Text = (t.getTime().Hour - 12).ToString();
-                ampmSelector.SelectedIndex = 1; //sets to PM
+                ampmSelector.SelectedIndex = 1; //Sets to PM
             }
-            else
+            else // Handles all other AM times
             {
                 hourEntry.Text = t.getTime().Hour.ToString();
-                ampmSelector.SelectedIndex = 0; //sets to AM
+                ampmSelector.SelectedIndex = 0; //Sets to AM
             }
-
+            // Set time, date, task name, and task note values
             minuteEntry.Text = t.getTime().Minute.ToString();
             datePicker.SelectedDate = t.getTime();
             nameEntry.Text = t.getTitle();
@@ -56,60 +56,60 @@ namespace EventPlanner
         }
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            main.editToggle = false;
-            this.Close();
+            main.editToggle = false; // Turn edit mode off
+            this.Close(); // Close the window
         }
 
-        private void saveButtonClick(object sender, RoutedEventArgs e)
+        private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             TimeSpan time;
             int hours;
             int minutes;
             DateTime date;
-            string eventName;
-            string eventNotes;
+            string taskName;
+            string taskNotes;
 
-            string errorMessage = "Please enter an Event Name and a valid time: hours(between 1 and 12):minutes(between 0 and 59).  Also, no reason, but don't use the sequence '<<@>>' anywhere.  No reason, just don't.";
+            string errorMessage = "Please enter a Task Name and a valid time where hours (between 1 and 12) and minutes (between 0 and 59).";
 
             try
             {
-                if (minuteEntry.Text.ToString() == "") minuteEntry.Text = "00"; //we default to 0 minutes
+                if (minuteEntry.Text.ToString() == "") minuteEntry.Text = "00"; // When minute is empty, default to 0
 
                 hours = int.Parse(hourEntry.Text.ToString());
                 minutes = int.Parse(minuteEntry.Text.ToString());
                 date = (DateTime)datePicker.SelectedDate;
-                eventName = nameEntry.Text;
-                eventNotes = noteEntry.Text;
+                taskName = nameEntry.Text;
+                taskNotes = noteEntry.Text;
 
-                if (eventName == "" || eventName.Contains("<<@>>") || eventNotes.Contains("<<@>>")) throw new FormatException();
+                if (taskName == "" || taskName.Contains("<<@>>") || taskNotes.Contains("<<@>>")) throw new FormatException(); // Prevent empty task names
 
-                //This checks to see if the time has been entered in a proper format
+                // Check for correct time format
                 if ((hours < 1) || (hours > 12) || (minutes < 0) || (minutes > 59)) throw new FormatException();
 
-                //since we're entering time by adding hours and minutes to a date stamp, we need to correct the hours to military time
+                // Convert time to military time
                 if (hours == 12) hours = 0;
 
-                //same as above, we add 12 hours if the event is in the evening to convert to military time
+                // Add 12 to PM times to convert to military time
                 if (ampmSelector.SelectedValue.ToString() == "PM") hours += 12;
 
-                //this is the timespan that will be added to the date
+                // Create new TimeSpan
                 time = new TimeSpan(hours, minutes, 0);
 
                 date = date.Add(time);
 
                 //Console.Out.WriteLine(date.ToString());
-                //Console.Out.WriteLine(eventName);
-                //Console.Out.WriteLine(eventNotes);
+                //Console.Out.WriteLine(taskName);
+                //Console.Out.WriteLine(taskNotes);
 
-                if (t == null)
+                if (t == null) // If task is null, add task object to list
                 {
-                    main.addEventToList(new Task(eventName, date, eventNotes));
+                    main.addTaskToList(new Task(taskName, date, taskNotes));
                 }
-                else
+                else // Create new task object and update the view
                 {
-                    t.setTitle(eventName);
+                    t.setTitle(taskName);
                     t.setTime(date);
-                    t.setNotes(eventNotes);
+                    t.setNotes(taskNotes);
                     main.updateView();
                 }
 
@@ -117,17 +117,17 @@ namespace EventPlanner
                 Close();
 
             }
-            catch (FormatException)
+            catch (FormatException) // Handle FormatException
             {
                 MessageBox.Show(errorMessage);
                 return;
             }
-            catch (OverflowException)
+            catch (OverflowException) // Handle OverflowException
             {
                 MessageBox.Show(errorMessage);
                 return;
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException) // Handle Exception when there is no Date selected
             {
                 MessageBox.Show("Please select a Date");
             }
@@ -135,7 +135,7 @@ namespace EventPlanner
 
         private void onClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            main.editToggle = false;
+            main.editToggle = false; // Turn edit mode off when window is closed
         }
     }
 }

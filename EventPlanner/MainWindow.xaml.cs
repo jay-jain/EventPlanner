@@ -23,18 +23,20 @@ namespace EventPlanner
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Class Variables
         public bool editToggle;
         private Timer taskTimer; 
         private List<DateDisplay> dateDisplayList;
         private List<Task> taskList;
         private List<TaskDisplay> taskDisplayList;
         private int daysInFuture;
-        private string ioFile;
+        private string printFile;
 
 
         public MainWindow()
         {
-            ioFile = "Tasks.txt";
+            // Initialize variables
+            printFile = "Tasks.txt";
             daysInFuture = 30;
             dateDisplayList = new List<DateDisplay>();
             taskList = new List<Task>();
@@ -43,7 +45,7 @@ namespace EventPlanner
 
             InitializeComponent();
 
-            ReadTasks();
+            ReadTasks(); 
 
             generateDates(daysInFuture, DateTime.Now);
 
@@ -60,89 +62,89 @@ namespace EventPlanner
         private void ReadTasks()
         {
 
-            //need to test for ioFile existing here, create it if it doesn't.
+            // Test if printFile exists. If it does not exist, then create it.
             try
             {
-                string[] stringTasks = File.ReadAllLines(ioFile);
+                string[] stringTasks = File.ReadAllLines(printFile); // Store tasks in array
 
-                foreach (string line in stringTasks)
+                foreach (string line in stringTasks) // Iterate through tasks
                 {
                     string[] tempInfo = Regex.Split(line, "<<@>>");
                     try
                     {
-                        Task tempTask = new Task(tempInfo[0], DateTime.Parse(tempInfo[1]), tempInfo[2]);
-                        if (tempTask.getTime() > DateTime.Now)
+                        Task tempTask = new Task(tempInfo[0], DateTime.Parse(tempInfo[1]), tempInfo[2]); // Store task in temp variable
+                        if (tempTask.getTime() > DateTime.Now) // If task is in the future, then add to taskList
                         {
                             taskList.Add(tempTask);
                         }
                     }
-                    catch (System.FormatException)
+                    catch (System.FormatException) // Catch FormatException
                     {
                         MessageBox.Show("The Tasks.txt file has been corrupted. Please erase or fix the file and restart the program");
                         Close();
                     }
-                    catch (System.IndexOutOfRangeException)
+                    catch (System.IndexOutOfRangeException) // catch IndexOutOfRangeException
                     {
                         MessageBox.Show("The Tasks.txt file has been corrupted. Please erase or fix the file and restart the program");
                         Close();
                     }
                 }
-                taskList.Sort();
+                taskList.Sort(); // Sort tasks
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException) // If file does not exist, create StreamWriter
             {
-                StreamWriter sw = new StreamWriter(ioFile);
+                StreamWriter sw = new StreamWriter(printFile);
                 sw.Close();
             }
-            catch (IOException ex)
+            catch (IOException ex) // Catch IO exception
             {
                 MessageBox.Show(ex.Message);
             }
 
         }
 
-        private void WriteEvents()
+        private void WriteTasks() 
         {
             try
             {
-                StreamWriter sw = new StreamWriter(ioFile);
-                foreach (Task t in taskList)
+                StreamWriter sw = new StreamWriter(printFile); // Create StreamWriter
+                foreach (Task t in taskList) // Iterate through tasks
                 {
-                    string temp = t.getTitle() + "<<@>>" + t.getTime() + "<<@>>" + t.getNotes();
-                    sw.WriteLine(temp);
+                    string temp = t.getTitle() + "<<@>>" + t.getTime() + "<<@>>" + t.getNotes();// Store task in temp variable
+                    sw.WriteLine(temp);// Write task to file
                 }
-                sw.Close();
+                sw.Close(); // Close StreamWriter
             }
-            catch (IOException ex)
+            catch (IOException ex) // Catch IOException
             {
-                MessageBox.Show("Could not create task file, nothing will be saved this session.  Error: " + ex.Message);
+                MessageBox.Show("Could not create task file. Nothing will be saved this session.  Error: " + ex.Message);
             }
         }
 
         private void generateDates(int amount, DateTime now)
         {
-            for (int i = 0; i <= amount; i++)
+            for (int i = 0; i <= amount; i++) // Iterate over next 30 days
             {
-                DateDisplay tempDate = new DateDisplay(now.ToShortDateString());
+                DateDisplay tempDate = new DateDisplay(now.ToShortDateString()); // Create temp date
                 tempDate.Width = 250;
-                dateDisplayList.Add(tempDate);
-                AllTasksDisplay.Children.Add(tempDate);
+                dateDisplayList.Add(tempDate); // Add to display list
+                AllTasksDisplay.Children.Add(tempDate); //Add to all tasks
 
-                foreach (Task t in taskList)
+                foreach (Task t in taskList) // Iterate through tasks
                 {
-                    if (t.getTime().ToShortDateString() == now.ToShortDateString())
+                    if (t.getTime().ToShortDateString() == now.ToShortDateString()) // If current time is equal to task time
                     {
                         TaskDisplay tempTaskDisplay = new TaskDisplay(t);
-                        tempTaskDisplay.editButton.Click += (object sender, RoutedEventArgs e) =>
+                        tempTaskDisplay.editButton.Click += (object sender, RoutedEventArgs e) => // When edit button has been clicked
                         {
-                            if (!editToggle)
+                            if (!editToggle) // If editing is false, because !false is true
                             {
-                                EditDisplay w = new EditDisplay(this, t);
+                                EditDisplay w = new EditDisplay(this, t); // Open a new edit window
                                 w.Show();
                                 editToggle = true;
                             }
                         };
-                        tempTaskDisplay.deleteButton.Click += (object sender, RoutedEventArgs e) =>
+                        tempTaskDisplay.deleteButton.Click += (object sender, RoutedEventArgs e) => //When delete button clicked
                         {
                             taskList.Remove(t);
                             updateView();
@@ -163,11 +165,11 @@ namespace EventPlanner
 
         private void MoreDaysButton_Click(object sender, RoutedEventArgs e)
         {
-            daysInFuture += 30;
+            daysInFuture += 30; // Cumulatively keep track of daysInFuture because the button can be clicked many times
             updateView();
         }
 
-        private void populateIncoming(DateTime now)
+        private void populateIncoming(DateTime now) // Add upcoming tasks to the view
         {
             if (taskList.Count() > 0) UpcomingTasksDisplay.Children.Add(new UpcomingDisplay(taskList[0]));
             if (taskList.Count() > 1) UpcomingTasksDisplay.Children.Add(new UpcomingDisplay(taskList[1]));
@@ -223,12 +225,12 @@ namespace EventPlanner
             {
                 taskList.Add(t);
                 //taskList.Sort();
-                //writeEvents();
+                //WriteTasks();
                 updateView();
             }
             else
             {
-                MessageBox.Show("Cannot add tasks before current date-time");
+                MessageBox.Show("Cannot add tasks before current datetime.");
             }
         }
 
@@ -240,9 +242,9 @@ namespace EventPlanner
             AllTasksDisplay.Children.Clear();
             UpcomingTasksDisplay.Children.Clear();
 
-            ClearPastEvents();
+            ClearPastTasks();
             taskList.Sort();
-            WriteEvents();
+            WriteTasks();
 
             generateDates(daysInFuture, DateTime.Now);
             populateIncoming(DateTime.Now);
@@ -250,7 +252,7 @@ namespace EventPlanner
             taskTimer.Start();
         }
 
-        private void ClearPastEvents()
+        private void ClearPastTasks()
         {
             for (int i = taskList.Count - 1; i >= 0; i--)
             {
@@ -286,10 +288,11 @@ namespace EventPlanner
             String printMessage = "";
             printMessage += "Task Report on " + DateTime.Now.ToLongDateString();
             printMessage += "\r\n";
-            foreach (Task t in taskList)
+            foreach (Task t in taskList) // Iterate throught tasks
             {
                 //string temp = de.getName() + "<<@>>" + de.getTime() + "<<@>>" + de.getNotes();
                 //sw.WriteLine(temp);
+                // Create printMessage string
                 printMessage += "Task: " + t.getTitle();
                 printMessage += "\r\n";
                 printMessage += "Time: " + t.getTime().ToLongDateString() + " " + t.getTime().ToLongTimeString();

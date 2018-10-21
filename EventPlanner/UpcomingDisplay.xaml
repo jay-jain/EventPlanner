@@ -12,7 +12,7 @@
         </LinearGradientBrush>
     </UserControl.BorderBrush>
     <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="250">
-        <TextBlock x:Name="eventName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Task" VerticalAlignment="Top" Padding="5"/>
-        <TextBlock x:Name="dueTime" HorizontalAlignment="Right" TextWrapping="Wrap" Text="H:M" VerticalAlignment="Top" Margin="0,5,10,0"/>
+        <TextBlock x:Name="taskName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Task" VerticalAlignment="Top" Padding="5"/>
+        <TextBlock x:Name="dueTime" HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hour:Minute" VerticalAlignment="Top" Margin="0,5,10,0"/>
     </Grid>
 </UserControl>
