@@ -73,6 +73,9 @@
     <Compile Include="EditDisplay.xaml.cs">
       <DependentUpon>EditDisplay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrintDisplay.xaml.cs">
+      <DependentUpon>PrintDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Task.cs" />
     <Compile Include="TaskDisplay.xaml.cs">
       <DependentUpon>TaskDisplay.xaml</DependentUpon>
@@ -118,6 +121,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PrintDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TaskDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

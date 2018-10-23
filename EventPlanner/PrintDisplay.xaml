@@ -1,0 +1,20 @@
+﻿<Window x:Class="EventPlanner.PrintDisplay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventPlanner"
+        mc:Ignorable="d"
+        Title="PrintDisplay" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="123*"/>
+            <RowDefinition Height="17*"/>
+        </Grid.RowDefinitions>
+        <DatePicker x:Name="startDate"  HorizontalAlignment="Left" Margin="129,52,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="startBlock" HorizontalAlignment="Left" Margin="34,56,0,0" TextWrapping="Wrap" Text="Start Date: " VerticalAlignment="Top"/>
+        <DatePicker x:Name="endDate"  HorizontalAlignment="Left" Margin="389,55,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="endBlock" HorizontalAlignment="Left" Margin="292,59,0,0" TextWrapping="Wrap" Text="End Date: " VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
