@@ -12,13 +12,14 @@ namespace EventPlanner
         private string title;
         private DateTime time;
         private string notes;
+        private string category;
 
-        public Task(String title, DateTime time, String notes)
+        public Task(String title, DateTime time, String notes, String category)
         {
             this.title = title;
             this.time = time;
             this.notes = notes;
-
+            this.category = category;
         }
 
         public void setTitle(String title)
@@ -54,6 +55,16 @@ namespace EventPlanner
         public int CompareTo(Task next)
         {
             return time.CompareTo(next.time);
+        }
+
+        public string getCategory()
+        {
+            return this.category;
+        }
+
+        public void setCategory(String category)
+        {
+            this.category = category;
         }
     }
 }

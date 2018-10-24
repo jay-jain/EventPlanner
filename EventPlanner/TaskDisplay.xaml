@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:EventPlanner"
         mc:Ignorable="d"
         d:DesignWidth="250" Margin="0,0,0,3">
-    <StackPanel Background="#FF9DFF9D" Width="250" MinWidth="250" MaxWidth="250" VerticalAlignment="Top" HorizontalAlignment="Left">
+    <StackPanel x:Name="panel" Background="White" Width="258" MinWidth="250" MaxWidth="250" VerticalAlignment="Top" HorizontalAlignment="Left" Height="126" Margin="0,0,-8,0">
         <TextBlock x:Name="taskName" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Task Name" VerticalAlignment="Top"/>
         <TextBlock x:Name="taskNotes" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Task Notes" VerticalAlignment="Top"/>
         <TextBlock x:Name="dateText" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top"/>
         <TextBlock x:Name="timeText" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top"/>
         <TextBlock x:Name="relativeDueText" TextWrapping="Wrap" Text="Relative Due Time" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="categoryText" TextWrapping="Wrap" Text="Category" HorizontalAlignment="Center"/>
         <Grid Height="20">
-            <Button x:Name="editButton" HorizontalAlignment="Left" Margin="20,0,0,0" Width="76" Content="Edit"/>
-            <Button x:Name="deleteButton" Content="Delete" Margin="0,0,20,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="76"/>
+            <Button x:Name="editButton" HorizontalAlignment="Left" Margin="22,0,0,0" Width="76" Content="Edit"/>
+            <Button x:Name="deleteButton" Content="Delete" Margin="0,0,17,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="76"/>
         </Grid>
 
     </StackPanel>

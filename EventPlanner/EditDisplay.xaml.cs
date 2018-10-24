@@ -53,6 +53,7 @@ namespace EventPlanner
             datePicker.SelectedDate = t.getTime();
             nameEntry.Text = t.getTitle();
             noteEntry.Text = t.getNotes();
+            listBox.Text = t.getCategory();
         }
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -68,8 +69,9 @@ namespace EventPlanner
             DateTime date;
             string taskName;
             string taskNotes;
+            string category;
 
-            string errorMessage = "Please enter a Task Name and a valid time where hours (between 1 and 12) and minutes (between 0 and 59).";
+            string errorMessage = "Please enter a task name, category, and a valid time where hours (between 1 and 12) and minutes (between 0 and 59).";
 
             try
             {
@@ -80,11 +82,15 @@ namespace EventPlanner
                 date = (DateTime)datePicker.SelectedDate;
                 taskName = nameEntry.Text;
                 taskNotes = noteEntry.Text;
+                category = listBox.Text;
 
                 if (taskName == "" || taskName.Contains("<<@>>") || taskNotes.Contains("<<@>>")) throw new FormatException(); // Prevent empty task names
 
                 // Check for correct time format
                 if ((hours < 1) || (hours > 12) || (minutes < 0) || (minutes > 59)) throw new FormatException();
+
+                // Check if category has been filled
+                if (category == "") throw new FormatException();
 
                 // Convert time to military time
                 if (hours == 12) hours = 0;
@@ -103,13 +109,14 @@ namespace EventPlanner
 
                 if (t == null) // If task is null, add task object to list
                 {
-                    main.addTaskToList(new Task(taskName, date, taskNotes));
+                    main.addTaskToList(new Task(taskName, date, taskNotes,category));
                 }
                 else // Create new task object and update the view
                 {
                     t.setTitle(taskName);
                     t.setTime(date);
                     t.setNotes(taskNotes);
+                    t.setCategory(category);
                     main.updateView();
                 }
 
@@ -129,13 +136,18 @@ namespace EventPlanner
             }
             catch (InvalidOperationException) // Handle Exception when there is no Date selected
             {
-                MessageBox.Show("Please select a Date");
+                MessageBox.Show("Please select a date.");
             }
         }
 
         private void onClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             main.editToggle = false; // Turn edit mode off when window is closed
+        }
+
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

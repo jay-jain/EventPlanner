@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EventPlanner"
         xmlns:System="clr-namespace:System;assembly=mscorlib" 
         mc:Ignorable="d"
-        Title="Edit Task" Height="300" Width="300" Closing="onClosing">
+        Title="Edit Task" Height="343.249" Width="343.249" Closing="onClosing">
     <Grid>
         <DatePicker x:Name="datePicker" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" SelectedDateFormat="Long"/>
         <Label x:Name="timeEntryLabel" Content="Time: " HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top"/>
@@ -14,8 +14,8 @@
         <Label x:Name="noteEntryLabel" Content="Notes:" HorizontalAlignment="Left" Margin="14,101,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="nameEntry" HorizontalAlignment="Left" Height="23" Margin="99,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="183" MaxLength="20" MaxLines="1"/>
         <TextBox x:Name="noteEntry" HorizontalAlignment="Left" Height="100" Margin="63,113,0,0" VerticalAlignment="Top" Width="219" MaxLength="100"/>
-        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="207,239,0,0" VerticalAlignment="Top" Width="75" Click="saveButton_Click"/>
-        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="10,239,0,0" VerticalAlignment="Top" Width="75" Click="cancelButton_Click"/>
+        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="222,270,0,0" VerticalAlignment="Top" Width="75" Click="saveButton_Click"/>
+        <Button x:Name="cancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="14,270,0,0" VerticalAlignment="Top" Width="75" Click="cancelButton_Click"/>
         <ComboBox x:Name="ampmSelector" HorizontalAlignment="Left" Margin="131,43,0,0" VerticalAlignment="Top" Width="56" SelectedIndex="0" IsReadOnly="True">
             <System:String>AM</System:String>
             <System:String>PM</System:String>
@@ -23,6 +23,23 @@
         <TextBox x:Name="hourEntry" HorizontalAlignment="Left" Height="23" Margin="57,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="28"/>
         <TextBox x:Name="minuteEntry" HorizontalAlignment="Left" Height="23" Margin="99,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="27"/>
         <Label x:Name="label" Content=":" HorizontalAlignment="Left" Margin="85,39,0,0" VerticalAlignment="Top"/>
-
+        <ComboBox x:Name="listBox" HorizontalAlignment="Left" Height="24" Margin="109,231,0,0" VerticalAlignment="Top" Width="159" SelectionChanged="listBox_SelectionChanged">
+            <ComboBoxItem>
+                <StackPanel  Orientation="Horizontal">
+                    <TextBlock Background="OrangeRed">High Priority</TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Background="LightYellow">Medium Priority</TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                    <StackPanel Orientation="Horizontal">
+                    <TextBlock Background="LightGreen">Low Priority</TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+        </ComboBox>
+        <Label x:Name="categoryLabel" Content="Category:" HorizontalAlignment="Left" Margin="28,229,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

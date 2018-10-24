@@ -45,7 +45,7 @@ namespace EventPlanner
 
             InitializeComponent();
 
-            ReadTasks(); 
+            //ReadTasks(); 
 
             generateDates(daysInFuture, DateTime.Now);
 
@@ -72,7 +72,7 @@ namespace EventPlanner
                     string[] tempInfo = Regex.Split(line, "<<@>>");
                     try
                     {
-                        Task tempTask = new Task(tempInfo[0], DateTime.Parse(tempInfo[1]), tempInfo[2]); // Store task in temp variable
+                        Task tempTask = new Task(tempInfo[0], DateTime.Parse(tempInfo[1]), tempInfo[2], tempInfo[3]); // Store task in temp variable
                         if (tempTask.getTime() > DateTime.Now) // If task is in the future, then add to taskList
                         {
                             taskList.Add(tempTask);
@@ -110,7 +110,7 @@ namespace EventPlanner
                 StreamWriter sw = new StreamWriter(printFile); // Create StreamWriter
                 foreach (Task t in taskList) // Iterate through tasks
                 {
-                    string temp = t.getTitle() + "<<@>>" + t.getTime() + "<<@>>" + t.getNotes();// Store task in temp variable
+                    string temp = t.getTitle() + "<<@>>" + t.getTime() + "<<@>>" + t.getNotes() + "<<@>>" + t.getCategory();// Store task in temp variable
                     sw.WriteLine(temp);// Write task to file
                 }
                 sw.Close(); // Close StreamWriter
