@@ -21,7 +21,7 @@ namespace EventPlanner
     {
         private List<Task> taskList;
 
-        public PrintDisplay()
+        public PrintDisplay(MainWindow mw)
         {
             InitializeComponent();
         }
@@ -29,6 +29,16 @@ namespace EventPlanner
         private List<Task> getSpecifiedTasks(DateTime startDate, DateTime endDate)
         {
             return taskList;
+        }
+
+        private void radioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void allTasks_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 

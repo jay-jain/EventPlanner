@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EventPlanner"
         mc:Ignorable="d"
-        Title="PrintDisplay" Height="450" Width="800">
+        Title="Print Report" Height="289.5" Width="588.5">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="123*"/>
@@ -15,6 +15,9 @@
         <TextBlock x:Name="startBlock" HorizontalAlignment="Left" Margin="34,56,0,0" TextWrapping="Wrap" Text="Start Date: " VerticalAlignment="Top"/>
         <DatePicker x:Name="endDate"  HorizontalAlignment="Left" Margin="389,55,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="endBlock" HorizontalAlignment="Left" Margin="292,59,0,0" TextWrapping="Wrap" Text="End Date: " VerticalAlignment="Top"/>
+        <Button x:Name="button" Content="Print Report&#xD;&#xA;" HorizontalAlignment="Left" Margin="234,197,0,0" VerticalAlignment="Top" Width="112" Height="21"/>
+        <RadioButton x:Name="selectedRange" Content="Print Report for Selected Date Range" HorizontalAlignment="Left" Margin="22,31,0,0" VerticalAlignment="Top" Checked="radioButton_Checked"/>
+        <RadioButton x:Name="allTasks" Content="Print Report for all Tasks" HorizontalAlignment="Left" Margin="22,109,0,0" VerticalAlignment="Top" Checked="allTasks_Checked"/>
 
     </Grid>
 </Window>

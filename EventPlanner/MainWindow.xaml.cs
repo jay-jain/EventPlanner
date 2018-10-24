@@ -263,55 +263,61 @@ namespace EventPlanner
             }
         }
 
-        private void PrintReport_Click(object sender, RoutedEventArgs e)
+        private void PrintReport_Click(object sender,RoutedEventArgs e)
         {
-            //try {
-            //    StreamWriter sw = new StreamWriter("EventReport.txt", true);
-            //    sw.WriteLine("Event Report as of " + DateTime.Now.ToLongDateString());
-            //    sw.WriteLine("");
-            //    foreach (DEvent de in taskList)
-            //    {
-            //        //string temp = de.getName() + "<<@>>" + de.getTime() + "<<@>>" + de.getNotes();
-            //        //sw.WriteLine(temp);
-            //        sw.WriteLine("Event: " + de.getName());
-            //        sw.WriteLine("Occurs: " + de.getTime().ToLongDateString() + " " + de.getTime().ToLongTimeString());
-            //        sw.WriteLine("Notes: " + de.getNotes());
-            //        sw.WriteLine("");
-            //    }
-            //    sw.Close();
-            //    MessageBox.Show("File EventReport.txt saved to same directory as program.");
-            //} catch (IOException ex)
-            //{
-            //    MessageBox.Show("Cound not write file.  Error:" + ex.Message);
-            //}
-
-            String printMessage = "";
-            printMessage += "Task Report on " + DateTime.Now.ToLongDateString();
-            printMessage += "\r\n";
-            foreach (Task t in taskList) // Iterate throught tasks
-            {
-                //string temp = de.getName() + "<<@>>" + de.getTime() + "<<@>>" + de.getNotes();
-                //sw.WriteLine(temp);
-                // Create printMessage string
-                printMessage += "Task: " + t.getTitle();
-                printMessage += "\r\n";
-                printMessage += "Time: " + t.getTime().ToLongDateString() + " " + t.getTime().ToLongTimeString();
-                printMessage += "\r\n";
-                printMessage += "Notes: " + t.getNotes();
-                printMessage += "\r\n";
-                printMessage += "\r\n";
-            }
-
-            FlowDocument fd = new FlowDocument(new Paragraph(new Run(printMessage)));
-            fd.PagePadding = new Thickness(100);
-            IDocumentPaginatorSource idpSource = fd;
-
-            PrintDialog dialog = new PrintDialog();
-
-            dialog.ShowDialog();
-            dialog.PrintDocument(idpSource.DocumentPaginator, "Task Report");
-
+            PrintDisplay p = new PrintDisplay(this);
+            p.Show();
         }
+
+        //private void PrintReport_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //try {
+        //    //    StreamWriter sw = new StreamWriter("EventReport.txt", true);
+        //    //    sw.WriteLine("Event Report as of " + DateTime.Now.ToLongDateString());
+        //    //    sw.WriteLine("");
+        //    //    foreach (DEvent de in taskList)
+        //    //    {
+        //    //        //string temp = de.getName() + "<<@>>" + de.getTime() + "<<@>>" + de.getNotes();
+        //    //        //sw.WriteLine(temp);
+        //    //        sw.WriteLine("Event: " + de.getName());
+        //    //        sw.WriteLine("Occurs: " + de.getTime().ToLongDateString() + " " + de.getTime().ToLongTimeString());
+        //    //        sw.WriteLine("Notes: " + de.getNotes());
+        //    //        sw.WriteLine("");
+        //    //    }
+        //    //    sw.Close();
+        //    //    MessageBox.Show("File EventReport.txt saved to same directory as program.");
+        //    //} catch (IOException ex)
+        //    //{
+        //    //    MessageBox.Show("Cound not write file.  Error:" + ex.Message);
+        //    //}
+
+        //    String printMessage = "";
+        //    printMessage += "Task Report on " + DateTime.Now.ToLongDateString();
+        //    printMessage += "\r\n";
+        //    foreach (Task t in taskList) // Iterate throught tasks
+        //    {
+        //        //string temp = de.getName() + "<<@>>" + de.getTime() + "<<@>>" + de.getNotes();
+        //        //sw.WriteLine(temp);
+        //        // Create printMessage string
+        //        printMessage += "Task: " + t.getTitle();
+        //        printMessage += "\r\n";
+        //        printMessage += "Time: " + t.getTime().ToLongDateString() + " " + t.getTime().ToLongTimeString();
+        //        printMessage += "\r\n";
+        //        printMessage += "Notes: " + t.getNotes();
+        //        printMessage += "\r\n";
+        //        printMessage += "\r\n";
+        //    }
+
+        //    FlowDocument fd = new FlowDocument(new Paragraph(new Run(printMessage)));
+        //    fd.PagePadding = new Thickness(100);
+        //    IDocumentPaginatorSource idpSource = fd;
+
+        //    PrintDialog dialog = new PrintDialog();
+
+        //    dialog.ShowDialog();
+        //    dialog.PrintDocument(idpSource.DocumentPaginator, "Task Report");
+
+        //}
 
     }
 }
