@@ -36,7 +36,9 @@ namespace EventPlanner
                 printMessage += "\n\n";
                 foreach (Task t in taskList) // Iterate throught tasks
                 {
-                    if (t.getTime() >= startDate.Date & t.getTime() <= endDate.Date)
+                    Console.WriteLine(t.getTime());
+                    Console.WriteLine(endDate.Date);
+                    if (t.getTime().Date >= startDate.Date & t.getTime().Date <= endDate.Date)
                     {
                         // Create printMessage string
                         printMessage += "Task: " + t.getTitle();
