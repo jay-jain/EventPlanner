@@ -269,6 +269,11 @@ namespace EventPlanner
             p.Show();
         }
 
+        public List<Task> getTaskList()
+        {
+            return taskList;
+        }
+
         //private void PrintReport_Click(object sender, RoutedEventArgs e)
         //{
         //    //try {

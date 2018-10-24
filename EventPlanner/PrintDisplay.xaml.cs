@@ -20,15 +20,55 @@ namespace EventPlanner
     public partial class PrintDisplay : Window
     {
         private List<Task> taskList;
+        MainWindow mw;
 
         public PrintDisplay(MainWindow mw)
         {
             InitializeComponent();
+            this.mw = mw;
+            this.taskList = mw.getTaskList(); ;
         }
 
-        private List<Task> getSpecifiedTasks(DateTime startDate, DateTime endDate)
+        private String getSpecifiedTasks(DateTime startDate, DateTime endDate)
         {
-            return taskList;
+                String printMessage = "";
+                printMessage += "Task Report between " + startDate.Date.ToShortDateString() + " and " + endDate.Date.ToShortDateString();
+                printMessage += "\n\n";
+                foreach (Task t in taskList) // Iterate throught tasks
+                {
+                    if (t.getTime() >= startDate.Date & t.getTime() <= endDate.Date)
+                    {
+                        // Create printMessage string
+                        printMessage += "Task: " + t.getTitle();
+                        printMessage += "\r\n";
+                        printMessage += "Time: " + t.getTime().ToLongDateString() + " " + t.getTime().ToLongTimeString();
+                        printMessage += "\r\n";
+                        printMessage += "Notes: " + t.getNotes();
+                        printMessage += "\r\n";
+                        printMessage += "\r\n";
+                    }
+                    
+                }
+            return printMessage;
+        }
+
+        private String getAllTasks()
+        {
+                String printMessage = "";
+                printMessage += "Task Report for all future tasks";
+                printMessage += "\n\n";
+                foreach (Task t in taskList) // Iterate throught tasks
+                {
+                    // Create printMessage string
+                    printMessage += "Task: " + t.getTitle();
+                    printMessage += "\r\n";
+                    printMessage += "Time: " + t.getTime().ToLongDateString() + " " + t.getTime().ToLongTimeString();
+                    printMessage += "\r\n";
+                    printMessage += "Notes: " + t.getNotes();
+                    printMessage += "\r\n";
+                    printMessage += "\r\n";
+                }
+            return printMessage;
         }
 
         private void radioButton_Checked(object sender, RoutedEventArgs e)
@@ -39,6 +79,33 @@ namespace EventPlanner
         private void allTasks_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void printReport(String report)
+        {
+                FlowDocument fd = new FlowDocument(new Paragraph(new Run(report)));
+                fd.PagePadding = new Thickness(100);
+                IDocumentPaginatorSource idpSource = fd;
+
+                PrintDialog dialog = new PrintDialog();
+
+                dialog.ShowDialog();
+                dialog.PrintDocument(idpSource.DocumentPaginator, "Task Report");
+        }
+
+        private void PrintReport_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedRange.IsChecked == true)
+            {
+                printReport(getSpecifiedTasks(startDate.SelectedDate.Value,endDate.SelectedDate.Value));
+            }else if (allTasks.IsChecked == true)
+            {
+                printReport(getAllTasks());
+            }
+            else
+            {
+                MessageBox.Show("Please select a Print Report option.");
+            }
         }
     }
 
