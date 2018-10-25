@@ -40,6 +40,7 @@ namespace EventPlanner
             timeText.Text = t.getTime().ToShortTimeString();
             categoryText.Text = t.getCategory();
             updateRelativeDueTime(DateTime.Now);
+            Console.WriteLine(categoryText.Text);
             if(categoryText.Text =="High Priority")
             {
                 panel.Background = new SolidColorBrush(Colors.OrangeRed);

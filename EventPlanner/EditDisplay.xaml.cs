@@ -61,6 +61,12 @@ namespace EventPlanner
             this.Close(); // Close the window
         }
 
+        public void getSelectedBox(object sender, RoutedEventArgs e)
+        {
+            string selected;
+            selected = listBox.SelectedItem.ToString();
+        }
+
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             TimeSpan time;
@@ -83,6 +89,8 @@ namespace EventPlanner
                 taskName = nameEntry.Text;
                 taskNotes = noteEntry.Text;
                 category = listBox.Text;
+                
+                Console.WriteLine("Category: " + category);
 
                 if (taskName == "" || taskName.Contains("<<@>>") || taskNotes.Contains("<<@>>")) throw new FormatException(); // Prevent empty task names
 
