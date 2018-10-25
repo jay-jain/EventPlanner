@@ -35,18 +35,18 @@ namespace EventPlanner
         public void updateElements() // Update all task properties
         {
             taskName.Text = t.getTitle();
-            taskNotes.Text = t.getNotes();
+            taskNotes.Text = "Notes: " + t.getNotes();
             dateText.Text = t.getTime().ToShortDateString();
             timeText.Text = t.getTime().ToShortTimeString();
-            categoryText.Text = t.getCategory();
+            categoryText.Text = "Category: " + t.getCategory();
             updateRelativeDueTime(DateTime.Now);
             Console.WriteLine(categoryText.Text);
             if(categoryText.Text =="High Priority")
             {
-                panel.Background = new SolidColorBrush(Colors.OrangeRed);
+                panel.Background = new SolidColorBrush(Colors.LightPink);
             }else if(categoryText.Text == "Medium Priority")
             {
-                panel.Background = new SolidColorBrush(Colors.Yellow);
+                panel.Background = new SolidColorBrush(Colors.LightYellow);
             }
             else
             {

@@ -24,9 +24,9 @@
         <TextBox x:Name="minuteEntry" HorizontalAlignment="Left" Height="23" Margin="99,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="27"/>
         <Label x:Name="label" Content=":" HorizontalAlignment="Left" Margin="85,39,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="listBox" HorizontalAlignment="Left" Height="24" Margin="109,231,0,0" VerticalAlignment="Top" Width="159" SelectionChanged="listBox_SelectionChanged">
-            <ComboBoxItem Background="Red">High Priority</ComboBoxItem>
-            <ComboBoxItem Background="Yellow"> Medium Priority</ComboBoxItem>
-            <ComboBoxItem Background="Green"> Low Priority</ComboBoxItem>
+            <ComboBoxItem Background="LightPink">High Priority</ComboBoxItem>
+            <ComboBoxItem Background="LightYellow"> Medium Priority</ComboBoxItem>
+            <ComboBoxItem Background="LightGreen"> Low Priority</ComboBoxItem>
         </ComboBox>
         <Label x:Name="categoryLabel" Content="Category:" HorizontalAlignment="Left" Margin="28,229,0,0" VerticalAlignment="Top"/>
     </Grid>

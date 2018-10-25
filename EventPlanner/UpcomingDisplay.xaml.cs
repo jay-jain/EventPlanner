@@ -28,6 +28,18 @@ namespace EventPlanner
             this.t = t;
             taskName.Text = t.getTitle();
             UpdateRelativeDueTime(DateTime.Now);
+            if (t.getCategory() == "High Priority")
+            {
+                gridx.Background = new SolidColorBrush(Colors.LightPink);
+            }
+            else if (t.getCategory() == "Medium Priority")
+            {
+                gridx.Background = new SolidColorBrush(Colors.LightYellow);
+            }
+            else
+            {
+                gridx.Background = new SolidColorBrush(Colors.LightGreen);
+            }
         }
 
         internal void UpdateRelativeDueTime(DateTime now)

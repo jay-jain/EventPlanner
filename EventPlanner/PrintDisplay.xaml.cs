@@ -47,6 +47,8 @@ namespace EventPlanner
                         printMessage += "\r\n";
                         printMessage += "Notes: " + t.getNotes();
                         printMessage += "\r\n";
+                        printMessage += "Category: " + t.getCategory();
+                        printMessage += "\r\n";
                         printMessage += "\r\n";
                     }
                     
@@ -67,6 +69,8 @@ namespace EventPlanner
                     printMessage += "Time: " + t.getTime().ToLongDateString() + " " + t.getTime().ToLongTimeString();
                     printMessage += "\r\n";
                     printMessage += "Notes: " + t.getNotes();
+                    printMessage += "\r\n";
+                    printMessage += "Category: " + t.getCategory();
                     printMessage += "\r\n";
                     printMessage += "\r\n";
                 }

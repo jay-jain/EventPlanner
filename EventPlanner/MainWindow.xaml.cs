@@ -45,7 +45,7 @@ namespace EventPlanner
 
             InitializeComponent();
 
-            //ReadTasks(); 
+            ReadTasks(); 
 
             generateDates(daysInFuture, DateTime.Now);
 
