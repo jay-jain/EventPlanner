@@ -38,20 +38,21 @@ namespace EventPlanner
             taskNotes.Text = "Notes: " + t.getNotes();
             dateText.Text = t.getTime().ToShortDateString();
             timeText.Text = t.getTime().ToShortTimeString();
-            categoryText.Text = "Category: " + t.getCategory();
+            categoryText.Text = t.getCategory();
+            
             updateRelativeDueTime(DateTime.Now);
-            Console.WriteLine(categoryText.Text);
-            if(categoryText.Text =="High Priority")
+            if(categoryText.Text == "High Priority")
             {
                 panel.Background = new SolidColorBrush(Colors.LightPink);
             }else if(categoryText.Text == "Medium Priority")
             {
                 panel.Background = new SolidColorBrush(Colors.LightYellow);
             }
-            else
+            else if(categoryText.Text == "Low Priority")
             {
                 panel.Background = new SolidColorBrush(Colors.LightGreen);
             }
+            categoryText.Text = "Category: " + t.getCategory();
         }
 
         public void updateRelativeDueTime(DateTime now)

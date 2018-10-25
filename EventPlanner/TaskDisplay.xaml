@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EventPlanner"
         mc:Ignorable="d"
         d:DesignWidth="250" Margin="0,0,0,3">
-    <StackPanel x:Name="panel" Background="White" Width="258" MinWidth="250" MaxWidth="250" VerticalAlignment="Top" HorizontalAlignment="Left" Height="126" Margin="0,0,-8,0">
+    <StackPanel x:Name="panel" Background ="White" Width="258" MinWidth="250" MaxWidth="250" VerticalAlignment="Top" HorizontalAlignment="Left" Height="126" Margin="0,0,-8,0">
         <TextBlock x:Name="taskName" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Task Name" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBlock x:Name="taskNotes" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Task Notes" VerticalAlignment="Top"/>
         <TextBlock x:Name="dateText" HorizontalAlignment="Center" Margin="2,2,0,0" TextWrapping="Wrap" Text="Date" VerticalAlignment="Top"/>

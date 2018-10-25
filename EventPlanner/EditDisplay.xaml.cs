@@ -90,7 +90,7 @@ namespace EventPlanner
                 taskNotes = noteEntry.Text;
                 category = listBox.Text;
                 
-                Console.WriteLine("Category: " + category);
+                //Console.WriteLine("Category: " + category);
 
                 if (taskName == "" || taskName.Contains("<<@>>") || taskNotes.Contains("<<@>>")) throw new FormatException(); // Prevent empty task names
 
