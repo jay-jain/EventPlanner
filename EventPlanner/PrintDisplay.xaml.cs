@@ -36,8 +36,6 @@ namespace EventPlanner
                 printMessage += "\n\n";
                 foreach (Task t in taskList) // Iterate throught tasks
                 {
-                    Console.WriteLine(t.getTime());
-                    Console.WriteLine(endDate.Date);
                     if (t.getTime().Date >= startDate.Date & t.getTime().Date <= endDate.Date)
                     {
                         // Create printMessage string
@@ -77,15 +75,32 @@ namespace EventPlanner
             return printMessage;
         }
 
-        private void radioButton_Checked(object sender, RoutedEventArgs e)
+        private String getCatTasks()
         {
+            String printMessage = "";
+            printMessage += "Task Report for " + listBox.Text + " category." ;
+            printMessage += "\n\n";
+            foreach (Task t in taskList) // Iterate throught tasks
+            {
+                if (t.getCategory() == listBox.Text)
+                {
+                    // Create printMessage string
+                    printMessage += "Task: " + t.getTitle();
+                    printMessage += "\r\n";
+                    printMessage += "Time: " + t.getTime().ToLongDateString() + " " + t.getTime().ToLongTimeString();
+                    printMessage += "\r\n";
+                    printMessage += "Notes: " + t.getNotes();
+                    printMessage += "\r\n";
+                    printMessage += "Category: " + t.getCategory();
+                    printMessage += "\r\n";
+                    printMessage += "\r\n";
+                }
+            }
 
+                return printMessage;
         }
 
-        private void allTasks_Checked(object sender, RoutedEventArgs e)
-        {
 
-        }
 
         private void printReport(String report)
         {
@@ -107,8 +122,10 @@ namespace EventPlanner
             }else if (allTasks.IsChecked == true)
             {
                 printReport(getAllTasks());
-            }
-            else
+            }else if(printCat.IsChecked == true)
+            {
+                printReport(getCatTasks());
+            }else
             {
                 MessageBox.Show("Please select a Print Report option.");
             }

@@ -16,9 +16,16 @@
         <DatePicker x:Name="endDate"  HorizontalAlignment="Left" Margin="389,55,0,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="endBlock" HorizontalAlignment="Left" Margin="292,59,0,0" TextWrapping="Wrap" Text="End Date: " VerticalAlignment="Top"/>
         <Button x:Name="button" Content="Print Report" HorizontalAlignment="Left" Margin="234,197,0,0" VerticalAlignment="Top" Width="112" Height="21" Click="PrintReport_Click"/>
-        <RadioButton x:Name="selectedRange" Content="Print Report for Selected Date Range" HorizontalAlignment="Left" Margin="22,31,0,0" VerticalAlignment="Top" Checked="radioButton_Checked"/>
-        <RadioButton x:Name="allTasks" Content="Print Report for all Tasks" HorizontalAlignment="Left" Margin="22,109,0,0" VerticalAlignment="Top" Checked="allTasks_Checked"/>
+        <RadioButton x:Name="selectedRange" Content="Print Report for Selected Date Range" HorizontalAlignment="Left" Margin="22,31,0,0" VerticalAlignment="Top" />
+        <RadioButton x:Name="allTasks" Content="Print Report for all Tasks" HorizontalAlignment="Left" Margin="22,109,0,0" VerticalAlignment="Top" />
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="22,81,0,0" TextWrapping="Wrap" Text="* Date Ranges are inclusive" VerticalAlignment="Top"/>
+        <ComboBox x:Name="listBox" HorizontalAlignment="Left" Height="24" Margin="129,162,0,0" VerticalAlignment="Top" Width="159" >
+            <ComboBoxItem Background="LightPink" Content="High Priority"/>
+            <ComboBoxItem Background="LightYellow" Content="Medium Priority"/>
+            <ComboBoxItem Background="LightGreen" Content="Low Priority"/>
+        </ComboBox>
+        <Label x:Name="categoryLabel" Content="Category:" HorizontalAlignment="Left" Margin="48,160,0,0" VerticalAlignment="Top"/>
+        <RadioButton x:Name="printCat" Content="Print Report by Category" HorizontalAlignment="Left" Margin="22,139,0,0" VerticalAlignment="Top" />
 
     </Grid>
 </Window>
