@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
+
 
 namespace EventPlanner
 {
@@ -20,6 +8,7 @@ namespace EventPlanner
     /// </summary>
     public partial class DateDisplay : UserControl
     {
+        // Constructor that takes a date as an argument to set for the display
         public DateDisplay(string date)
         {
             InitializeComponent();

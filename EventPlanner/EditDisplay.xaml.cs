@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace EventPlanner
 {
@@ -48,7 +38,7 @@ namespace EventPlanner
                 hourEntry.Text = t.getTime().Hour.ToString();
                 ampmSelector.SelectedIndex = 0; //Sets to AM
             }
-            // Set time, date, task name, and task note values
+            // Set time, date, task name, category, and task note values
             minuteEntry.Text = t.getTime().Minute.ToString();
             datePicker.SelectedDate = t.getTime();
             nameEntry.Text = t.getTitle();
@@ -67,8 +57,10 @@ namespace EventPlanner
             selected = listBox.SelectedItem.ToString();
         }
 
+        // Saves task on button click
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
+            // Variables for task properties
             TimeSpan time;
             int hours;
             int minutes;
@@ -83,6 +75,7 @@ namespace EventPlanner
             {
                 if (minuteEntry.Text.ToString() == "") minuteEntry.Text = "00"; // When minute is empty, default to 0
 
+                // Stores variable info
                 hours = int.Parse(hourEntry.Text.ToString());
                 minutes = int.Parse(minuteEntry.Text.ToString());
                 date = (DateTime)datePicker.SelectedDate;
@@ -90,9 +83,8 @@ namespace EventPlanner
                 taskNotes = noteEntry.Text;
                 category = listBox.Text;
                 
-                //Console.WriteLine("Category: " + category);
-
-                if (taskName == "" || taskName.Contains("<<@>>") || taskNotes.Contains("<<@>>")) throw new FormatException(); // Prevent empty task names
+                // Checks for empty task names
+                if (taskName == "" || taskName.Contains("<<@>>") || taskNotes.Contains("<<@>>")) throw new FormatException(); 
 
                 // Check for correct time format
                 if ((hours < 1) || (hours > 12) || (minutes < 0) || (minutes > 59)) throw new FormatException();
@@ -108,12 +100,9 @@ namespace EventPlanner
 
                 // Create new TimeSpan
                 time = new TimeSpan(hours, minutes, 0);
-
+                
+                // Assign date
                 date = date.Add(time);
-
-                //Console.Out.WriteLine(date.ToString());
-                //Console.Out.WriteLine(taskName);
-                //Console.Out.WriteLine(taskNotes);
 
                 if (t == null) // If task is null, add task object to list
                 {
@@ -127,8 +116,8 @@ namespace EventPlanner
                     t.setCategory(category);
                     main.updateView();
                 }
-
-                main.editToggle = false;
+                
+                main.editToggle = false;// Turn edit off
                 Close();
 
             }
@@ -142,7 +131,7 @@ namespace EventPlanner
                 MessageBox.Show(errorMessage);
                 return;
             }
-            catch (InvalidOperationException) // Handle Exception when there is no Date selected
+            catch (InvalidOperationException) // Handle Exception when there is no date selected
             {
                 MessageBox.Show("Please select a date.");
             }
@@ -153,9 +142,5 @@ namespace EventPlanner
             main.editToggle = false; // Turn edit mode off when window is closed
         }
 
-        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

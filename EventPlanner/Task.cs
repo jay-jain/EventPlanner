@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EventPlanner
 {
     public class Task:IComparable<Task>
     {
-
+        // Task property variables
         private string title;
         private DateTime time;
         private string notes;
         private string category;
 
+        // Constructor
         public Task(String title, DateTime time, String notes, String category)
         {
             this.title = title;
@@ -22,6 +19,7 @@ namespace EventPlanner
             this.category = category;
         }
 
+        // Setter methods 
         public void setTitle(String title)
         {
             this.title = title;
@@ -37,6 +35,12 @@ namespace EventPlanner
             this.notes = notes;
         }
 
+        public void setCategory(String category)
+        {
+            this.category = category;
+        }
+
+        // Getter methods
         public string getTitle()
         {
             return this.title;
@@ -52,19 +56,15 @@ namespace EventPlanner
             return this.notes;
         }
 
-        public int CompareTo(Task next)
-        {
-            return time.CompareTo(next.time);
-        }
-
         public string getCategory()
         {
             return this.category;
         }
 
-        public void setCategory(String category)
+        
+        public int CompareTo(Task next)
         {
-            this.category = category;
+            return time.CompareTo(next.time);
         }
     }
 }

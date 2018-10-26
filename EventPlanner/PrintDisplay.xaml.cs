@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace EventPlanner
 {
@@ -29,6 +22,7 @@ namespace EventPlanner
             this.taskList = mw.getTaskList(); ;
         }
 
+        /* Obtains tasks within a given date range*/
         private String getSpecifiedTasks(DateTime startDate, DateTime endDate)
         {
                 String printMessage = "";
@@ -54,6 +48,7 @@ namespace EventPlanner
             return printMessage;
         }
 
+        /*Gets a list of all tasks*/
         private String getAllTasks()
         {
                 String printMessage = "";
@@ -75,6 +70,7 @@ namespace EventPlanner
             return printMessage;
         }
 
+        /* Gets a list of tasks from a given category*/
         private String getCatTasks()
         {
             String printMessage = "";
@@ -101,7 +97,7 @@ namespace EventPlanner
         }
 
 
-
+        // Prints a given report. 
         private void printReport(String report)
         {
                 FlowDocument fd = new FlowDocument(new Paragraph(new Run(report)));
@@ -112,20 +108,42 @@ namespace EventPlanner
 
                 dialog.ShowDialog();
                 dialog.PrintDocument(idpSource.DocumentPaginator, "Task Report");
+
         }
 
+        // Prints the given report based on user input
         private void PrintReport_Click(object sender, RoutedEventArgs e)
         {
-            if (selectedRange.IsChecked == true)
+            if (selectedRange.IsChecked == true) // Generates report for date range print option
             {
-                printReport(getSpecifiedTasks(startDate.SelectedDate.Value,endDate.SelectedDate.Value));
-            }else if (allTasks.IsChecked == true)
+                if(startDate.SelectedDate == null | endDate.SelectedDate == null) // Checks for no date selection
+                {
+                    MessageBox.Show("Please select a valid start and end date.");
+                }
+                else
+                {
+                    printReport(getSpecifiedTasks(startDate.SelectedDate.Value, endDate.SelectedDate.Value));
+                    this.Close();
+                }
+                
+            }else if (allTasks.IsChecked == true){
+                printReport(getAllTasks()); // Generates report for all tasks print option
+                this.Close();
+            }
+            else if(printCat.IsChecked == true)
             {
-                printReport(getAllTasks());
-            }else if(printCat.IsChecked == true)
-            {
-                printReport(getCatTasks());
-            }else
+                if(listBox.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a category.");
+                }
+                else
+                {
+                    printReport(getCatTasks());// Generates report for category print option
+                    this.Close();
+                }
+                
+            }
+            else
             {
                 MessageBox.Show("Please select a Print Report option.");
             }

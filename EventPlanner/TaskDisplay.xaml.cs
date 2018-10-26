@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace EventPlanner
 {
@@ -23,17 +12,18 @@ namespace EventPlanner
         Task t;
         TimeSpan timespan;
 
+        // TaskDisplay constructor
         public TaskDisplay(Task t)
         {
             this.t = t;
-
             InitializeComponent();
-
             updateElements();
         }
 
-        public void updateElements() // Update all task properties
+        // Updates elements when task has been 
+        public void updateElements() 
         {
+            // Sets task properties
             taskName.Text = t.getTitle();
             taskNotes.Text = "Notes: " + t.getNotes();
             dateText.Text = t.getTime().ToShortDateString();
@@ -41,6 +31,8 @@ namespace EventPlanner
             categoryText.Text = t.getCategory();
             
             updateRelativeDueTime(DateTime.Now);
+
+            // Changes task color based on the category type
             if(categoryText.Text == "High Priority")
             {
                 panel.Background = new SolidColorBrush(Colors.LightPink);
@@ -52,9 +44,10 @@ namespace EventPlanner
             {
                 panel.Background = new SolidColorBrush(Colors.LightGreen);
             }
-            categoryText.Text = "Category: " + t.getCategory();
+            categoryText.Text = "Category: " + t.getCategory(); // Updates category string for more readable format
         }
 
+        // Updates relative time based on current time and the time the task is due
         public void updateRelativeDueTime(DateTime now)
         {
             timespan = t.getTime() - now; // Calculate timespan between current time and when task is due

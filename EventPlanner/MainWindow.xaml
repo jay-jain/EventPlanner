@@ -18,18 +18,14 @@
 
         <Button x:Name="AddTaskButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="10,10,0,0" Content="Add Task" Height="33" FontSize="16" Click="AddTaskButton_Click" />
         <Button x:Name="PrintReport" HorizontalAlignment="Left" VerticalAlignment="Top" Width="88" Margin="44,10,0,0" Content="Print" Height="33" Grid.Column="1" FontSize="16" Click="PrintReport_Click" />
-        <!--Image Source="print.png" Height="36" Width="35" RenderTransformOrigin="0.589,1.278" /-->
+        
         <Separator HorizontalAlignment="Right" IsEnabled="False" Height="101" Margin="0" VerticalAlignment="Top" Width="751" FontFamily="Corbel" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="Title" HorizontalAlignment="Left" IsEnabled="False" Height="33" TextWrapping="Wrap" Text="Task Planner" VerticalAlignment="Top" Width="208" Margin="256,10,0,0" TextAlignment="Center" FontSize="20"  BorderThickness="0"/>
+        <TextBlock x:Name="Title" HorizontalAlignment="Left" IsEnabled="False" Height="33" TextWrapping="Wrap" Text="Task Planner" VerticalAlignment="Top" Width="208" Margin="256,10,0,0" TextAlignment="Center" FontSize="20" FontWeight="Bold"/>
         <Label x:Name="CurrentTimeLabel" Content="Current Time:" HorizontalAlignment="Left" Margin="24,60,0,0" VerticalAlignment="Top" FontSize="16"/>
         <TextBlock x:Name="CurrentTime" HorizontalAlignment="Left" Margin="134,65,0,0" TextWrapping="Wrap" Text="Time" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.899,0.611"/>
-        <ScrollViewer HorizontalAlignment="Left" Height="68" Margin="58,149,0,0" VerticalAlignment="Top" Width="637" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Grid.RowSpan="2">
-            <StackPanel x:Name="UpcomingTasksDisplay"/>
+        
+        <ScrollViewer HorizontalAlignment="Left" Height="372" Margin="58,106,0,0" VerticalAlignment="Top" Width="637" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <StackPanel x:Name="AllTasksDisplay" />
         </ScrollViewer>
-        <Label x:Name="DueSoonLabel" Content="Due Soon:" HorizontalAlignment="Left" Margin="58,118,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <ScrollViewer HorizontalAlignment="Left" Height="221" Margin="58,59,0,0" VerticalAlignment="Top" Width="637" VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.ColumnSpan="2">
-            <StackPanel x:Name="AllTasksDisplay"/>
-        </ScrollViewer>
-        <Label x:Name="TaskLabel" Content="Dates and Tasks:" HorizontalAlignment="Left" Margin="58,28,0,0" VerticalAlignment="Top" Grid.Row="1" FontSize="16"/>
     </Grid>
 </Window>
